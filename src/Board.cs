@@ -46,6 +46,7 @@ namespace Snake
         public void DrawBoard()
         {
             Console.SetCursorPosition(0, 0);
+            Console.BackgroundColor = SavedBackgroundColor;
             Console.Clear();
             // write font advise
             Console.WriteLine("Use square font like \"Noto Color Emoji\"");
