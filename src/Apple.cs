@@ -14,8 +14,8 @@ namespace Snake
             {
                 Position = new Point
                 {
-                    X = RandomNumberGenerator.GetInt32(0, board.Columns),
-                    Y = RandomNumberGenerator.GetInt32(0, board.Rows),
+                    X = RandomNumberGenerator.GetInt32(0, board.Size.Width),
+                    Y = RandomNumberGenerator.GetInt32(0, board.Size.Height),
                 };
             }
             while (exclude is not null && exclude.Contains(Position));

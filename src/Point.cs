@@ -46,12 +46,11 @@ namespace Snake
         /// Wraps each dimension beyond a maximum or under <c>0</c>
         /// </summary>
         /// <param name="point">Point to wrap</param>
-        /// <param name="max_x">Maximum value for dimention <c>X</c></param>
-        /// <param name="max_y">Maximum value for dimention <c>Y</c></param>
-        public static void Bounds(ref this Point point, int max_x, int max_y)
+        /// <param name="max">Maximum width/height value for X/Y</param>
+        public static void Bounds(ref this Point point, Size max)
         {
-            point.X = ScalarBounds(point.X, max_x);
-            point.Y = ScalarBounds(point.Y, max_y);
+            point.X = ScalarBounds(point.X, max.Width);
+            point.Y = ScalarBounds(point.Y, max.Height);
         }
 
         private static int ScalarBounds(int v, int max_v)

@@ -11,13 +11,13 @@ namespace Snake
         {
             Coords = new LinkedList<Point>();
             Size = 10;
-            Coords.AddLast(new Point { X = board.Columns / 2, Y = board.Rows / 2 });
+            Coords.AddLast(new Point(board.Size / 2));
         }
         public bool Next(in Board board, ref Apple apple, Direction direction)
         {
             var head = Coords.Last();
             head.Move(direction);
-            head.Bounds(board.Columns, board.Rows);
+            head.Bounds(board.Size);
             if (Coords.Contains(head))
             {
                 return false;

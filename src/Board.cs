@@ -4,14 +4,17 @@ namespace Snake
 {
     public class Board
     {
-        public int Rows { get; private set; }
-        public int Columns { get; private set; }
+        public Size Size { get; private set; }
         private ConsoleColor SavedBackgroundColor;
+
+        private static Size GetSizeFromConsole()
+        {
+            return new Size(Console.WindowWidth - 4, Console.WindowHeight - 5);
+        }
 
         public Board()
         {
-            Rows = 30;
-            Columns = 30;
+            Size = GetSizeFromConsole();
             SavedBackgroundColor = Console.BackgroundColor;
         }
 
@@ -25,7 +28,7 @@ namespace Snake
         public void DrawExit(string reason, int score)
         {
             Console.BackgroundColor = SavedBackgroundColor;
-            Console.SetCursorPosition(0, Rows + 4);
+            Console.SetCursorPosition(0, Size.Height + 4);
             Console.WriteLine($"\n End ({reason}). Score : {score}");
             Console.CursorVisible = true;
         }
@@ -38,19 +41,19 @@ namespace Snake
             Console.CursorVisible = false;
             // draw empty map
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine(new string(' ', this.Columns + 4));
+            Console.WriteLine(new string(' ', Size.Width + 4));
             Console.Write(' ');
             Console.BackgroundColor = ConsoleColor.White;
-            Console.Write(new string(' ', this.Columns + 2));
+            Console.Write(new string(' ', Size.Width + 2));
             Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine(' ');
-            for (int line = 0; line < this.Rows; line++)
+            for (int line = 0; line < Size.Height; line++)
             {
                 Console.Write(' ');
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.Write(' ');
                 Console.BackgroundColor = ConsoleColor.Black;
-                Console.Write(new string(' ', this.Columns));
+                Console.Write(new string(' ', Size.Width));
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.Write(' ');
                 Console.BackgroundColor = ConsoleColor.Black;
@@ -58,11 +61,11 @@ namespace Snake
             }
             Console.Write(' ');
             Console.BackgroundColor = ConsoleColor.White;
-            Console.Write(new string(' ', this.Columns + 2));
+            Console.Write(new string(' ', Size.Width + 2));
             Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine(' ');
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine(new string(' ', this.Columns + 4));
+            Console.Write(new string(' ', Size.Width + 4));
         }
     }
 }
