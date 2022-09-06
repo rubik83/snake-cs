@@ -13,6 +13,13 @@ namespace Snake
             Size = 10;
             Coords.AddLast(new Point(board.Size / 2));
         }
+        public void Draw(in Board board)
+        {
+            foreach (Point p in Coords)
+            {
+                board.DrawPoint(p, ConsoleColor.Blue);
+            }
+        }
         public bool Next(in Board board, ref Apple apple, Direction direction)
         {
             var head = Coords.Last();

@@ -33,8 +33,19 @@ namespace Snake
             Console.CursorVisible = true;
         }
 
+        public bool WindowChanged()
+        {
+            if (GetSizeFromConsole() != Size)
+            {
+                Size = GetSizeFromConsole();
+                return true;
+            }
+            return false;
+        }
+
         public void DrawBoard()
         {
+            Console.SetCursorPosition(0, 0);
             Console.Clear();
             // write font advise
             Console.WriteLine("Use square font like \"Noto Color Emoji\"");

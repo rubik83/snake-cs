@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Snake
 {
@@ -16,9 +16,17 @@ namespace Snake
 
             Board.DrawBoard();
             Apple.Draw(Board);
+            Snake.Draw(Board);
 
             while (Timer.Run)
             {
+                if (Board.WindowChanged())
+                {
+                    Apple.Bounds(Board);
+                    Board.DrawBoard();
+                    Apple.Draw(Board);
+                    Snake.Draw(Board);
+                }
                 Keyboard.NextDirection();
                 if (!(Snake.Next(Board, ref Apple, Keyboard.Direction)))
                 {

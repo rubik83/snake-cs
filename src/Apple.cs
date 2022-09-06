@@ -21,7 +21,12 @@ namespace Snake
             while (exclude is not null && exclude.Contains(Position));
             Size = RandomNumberGenerator.GetInt32(1, 3);
         }
-
+        public void Bounds(Board board)
+        {
+            Point p = Position;
+            p.Bounds(board.Size);
+            Position = p;
+        }
         public void Draw(Board board)
         {
             board.DrawPoint(Position, ConsoleColor.Red);
