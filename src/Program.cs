@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Snake
+﻿namespace Snake
 {
     static class Program
     {
