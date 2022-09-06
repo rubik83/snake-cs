@@ -24,7 +24,7 @@ namespace Snake
 
         public void Draw(Board board)
         {
-            board.DrawPoint(this.Position, ConsoleColor.Red);
+            board.DrawPoint(Position, ConsoleColor.Red);
         }
 
         public static void Change(ref Apple apple, in Board board, in LinkedList<Point> snake_coords)

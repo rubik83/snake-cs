@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 
 namespace Snake
 {
@@ -12,16 +12,11 @@ namespace Snake
 
         public static void Main(string[] args)
         {
-            Console.CancelKeyPress += (sender, args) =>
-            {
-                Exit("CTRL+C");
-            };
+            Console.CancelKeyPress += (sender, args) => Exit("CTRL+C");
 
             Board.DrawBoard();
-
             Apple.Draw(Board);
 
-            // run
             while (Timer.Run)
             {
                 Keyboard.NextDirection();
