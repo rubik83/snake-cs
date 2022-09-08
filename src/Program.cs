@@ -1,6 +1,6 @@
 ﻿namespace snake_cs;
 
-public class Program
+internal sealed class Program
 {
     private readonly Board _board;
     private Apple _apple;
@@ -34,6 +34,7 @@ public class Program
                 _apple.Draw(_board);
                 _snake.Draw(_board);
             }
+
             _keyboard.NextDirection();
             if (!(_snake.Next(_board, ref _apple, _keyboard.Direction)))
             {
@@ -41,6 +42,7 @@ public class Program
                 Exit("GAME OVER");
                 return;
             }
+
             _timer.Wait();
         }
     }

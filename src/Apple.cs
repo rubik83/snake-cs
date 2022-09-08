@@ -3,12 +3,12 @@ using System.Security.Cryptography;
 
 namespace snake_cs;
 
-public struct Apple
+internal struct Apple
 {
-    public Point Position { get; private set; }
-    public int Size { get; private set; }
+    internal Point Position { get; private set; }
+    internal int Size { get; private set; }
 
-    public Apple(in Board board, LinkedList<Point>? exclude)
+    internal Apple(in Board board, LinkedList<Point>? exclude)
     {
         do
         {
@@ -17,11 +17,12 @@ public struct Apple
                 X = RandomNumberGenerator.GetInt32(0, board.Size.Width),
                 Y = RandomNumberGenerator.GetInt32(0, board.Size.Height),
             };
-        }
-        while (exclude is not null && exclude.Contains(Position));
+        } while (exclude is not null && exclude.Contains(Position));
+
         Size = RandomNumberGenerator.GetInt32(1, 4);
     }
-    public void Bounds(Board board)
+
+    internal void Bounds(Board board)
     {
         var p = Position;
         p.Bounds(board.Size);
@@ -38,14 +39,15 @@ public struct Apple
             _ => throw new ArgumentOutOfRangeException()
         };
     }
-    public void Draw(Board board)
+
+    internal void Draw(Board board)
     {
-        board.DrawPoint(Position, Color());
+        Board.DrawPoint(Position, Color());
     }
 
-    public static void Change(ref Apple apple, in Board board, in LinkedList<Point> snakeCoords)
+    internal static void Change(ref Apple apple, in Board board, in LinkedList<Point> snakeCoords)
     {
-        board.DrawPoint(apple.Position, ConsoleColor.Black);
+        Board.DrawPoint(apple.Position, ConsoleColor.Black);
         apple = new Apple(board, snakeCoords);
         apple.Draw(board);
     }

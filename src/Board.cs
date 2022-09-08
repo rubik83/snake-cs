@@ -2,9 +2,9 @@ using System.Drawing;
 
 namespace snake_cs;
 
-public class Board
+internal sealed class Board
 {
-    public Size Size { get; private set; }
+    internal Size Size { get; private set; }
     private readonly ConsoleColor _savedBackgroundColor;
 
     private static Size GetSizeFromConsole()
@@ -12,20 +12,20 @@ public class Board
         return new Size(Console.WindowWidth - 4, Console.WindowHeight - 5);
     }
 
-    public Board()
+    internal Board()
     {
         Size = GetSizeFromConsole();
         _savedBackgroundColor = Console.BackgroundColor;
     }
 
-    public void DrawPoint(Point point, ConsoleColor color)
+    internal static void DrawPoint(Point point, ConsoleColor color)
     {
         Console.BackgroundColor = color;
         Console.SetCursorPosition(point.X + 2, point.Y + 3);
         Console.Write(' ');
     }
 
-    public void DrawExit(string reason, int score)
+    internal void DrawExit(string reason, int score)
     {
         Console.BackgroundColor = _savedBackgroundColor;
         Console.SetCursorPosition(0, Size.Height + 4);
@@ -33,14 +33,15 @@ public class Board
         Console.CursorVisible = true;
     }
 
-    public bool WindowChanged()
+    internal bool WindowChanged()
     {
         if (GetSizeFromConsole() == Size) return false;
+
         Size = GetSizeFromConsole();
         return true;
     }
 
-    public void DrawBoard()
+    internal void DrawBoard()
     {
         Console.SetCursorPosition(0, 0);
         Console.BackgroundColor = _savedBackgroundColor;
@@ -56,7 +57,7 @@ public class Board
         Console.Write(new string(' ', Size.Width + 2));
         Console.BackgroundColor = ConsoleColor.Black;
         Console.WriteLine(' ');
-        for (int line = 0; line < Size.Height; line++)
+        for (var line = 0; line < Size.Height; line++)
         {
             Console.Write(' ');
             Console.BackgroundColor = ConsoleColor.White;
@@ -68,6 +69,7 @@ public class Board
             Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine(' ');
         }
+
         Console.Write(' ');
         Console.BackgroundColor = ConsoleColor.White;
         Console.Write(new string(' ', Size.Width + 2));

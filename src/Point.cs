@@ -5,7 +5,7 @@ namespace snake_cs;
 /// <summary>
 ///  Cardinal directions
 /// </summary>
-public enum Direction
+internal enum Direction
 {
     Up,
     Down,
@@ -16,7 +16,7 @@ public enum Direction
 /// <summary>
 ///  This class performs extensions for <c>System.Drawing.Point</c>
 /// </summary>
-public static class PointExtents
+internal static class PointExtents
 {
     /// <summary>
     ///  Move <c>Point</c> <paramref name="point"/> of <c>1</c> in <c>Direction</c> <paramref name="direction"/>
@@ -49,7 +49,7 @@ public static class PointExtents
     /// </summary>
     /// <param name="point">Point to wrap</param>
     /// <param name="max">Maximum width/height value for X/Y</param>
-    public static void Bounds(ref this Point point, Size max)
+    internal static void Bounds(ref this Point point, Size max)
     {
         point.X = ScalarBounds(point.X, max.Width);
         point.Y = ScalarBounds(point.Y, max.Height);
@@ -57,14 +57,10 @@ public static class PointExtents
 
     private static int ScalarBounds(int v, int maxV)
     {
-        if (v < 0)
-        {
-            return v + maxV;
-        }
-        if (v >= maxV)
-        {
-            return v - maxV;
-        }
+        if (v < 0) return v + maxV;
+
+        if (v >= maxV) return v - maxV;
+
         return v;
     }
 }

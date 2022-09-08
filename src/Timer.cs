@@ -1,19 +1,18 @@
 namespace snake_cs
 {
-    public class Timer
+    internal sealed class Timer
     {
         public bool Run;
         private readonly double _accel;
         private readonly double _minFreq;
         private readonly DateTime _begin;
 
-        public Timer()
+        internal Timer()
         {
             _accel = 0.2;
             _minFreq = 1.0;
             Run = true;
             _begin = DateTime.Now;
-
         }
 
         public void Wait()

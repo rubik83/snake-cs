@@ -1,6 +1,6 @@
 namespace snake_cs;
 
-public class Keyboard
+internal sealed class Keyboard
 {
     public Direction Direction { get; private set; }
 
@@ -12,6 +12,7 @@ public class Keyboard
     public void NextDirection()
     {
         if (!Console.KeyAvailable) return;
+
         var key = Console.ReadKey();
         Direction = key.Key switch
         {
