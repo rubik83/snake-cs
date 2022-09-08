@@ -19,7 +19,7 @@ internal sealed class Program
         Console.CancelKeyPress += (_, _) => Exit("CTRL+C");
 
         _board.DrawBoard();
-        _apple.Draw(_board);
+        _apple.Draw();
         _snake.Draw(_board);
     }
 
@@ -31,7 +31,7 @@ internal sealed class Program
             {
                 _apple.Bounds(_board);
                 _board.DrawBoard();
-                _apple.Draw(_board);
+                _apple.Draw();
                 _snake.Draw(_board);
             }
 

@@ -40,7 +40,7 @@ internal struct Apple
         };
     }
 
-    internal void Draw(Board board)
+    internal void Draw()
     {
         Board.DrawPoint(Position, Color());
     }
@@ -49,6 +49,6 @@ internal struct Apple
     {
         Board.DrawPoint(apple.Position, ConsoleColor.Black);
         apple = new Apple(board, snakeCoords);
-        apple.Draw(board);
+        apple.Draw();
     }
 }
