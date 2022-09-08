@@ -14,9 +14,9 @@ public enum Direction
 }
 
 /// <summary>
-///  This class performs extentions for <c>System.Drawing.Point</c>
+///  This class performs extensions for <c>System.Drawing.Point</c>
 /// </summary>
-public static class PointExtentions
+public static class PointExtents
 {
     /// <summary>
     ///  Move <c>Point</c> <paramref name="point"/> of <c>1</c> in <c>Direction</c> <paramref name="direction"/>
@@ -39,6 +39,8 @@ public static class PointExtentions
             case Direction.Right:
                 point.X += 1;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
         }
     }
 

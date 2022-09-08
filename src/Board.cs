@@ -35,12 +35,9 @@ public class Board
 
     public bool WindowChanged()
     {
-        if (GetSizeFromConsole() != Size)
-        {
-            Size = GetSizeFromConsole();
-            return true;
-        }
-        return false;
+        if (GetSizeFromConsole() == Size) return false;
+        Size = GetSizeFromConsole();
+        return true;
     }
 
     public void DrawBoard()

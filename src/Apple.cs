@@ -23,7 +23,7 @@ public struct Apple
     }
     public void Bounds(Board board)
     {
-        Point p = Position;
+        var p = Position;
         p.Bounds(board.Size);
         Position = p;
     }

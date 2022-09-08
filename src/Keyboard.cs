@@ -11,31 +11,15 @@ public class Keyboard
 
     public void NextDirection()
     {
-        bool keyAvailable = false;
-        try
+        if (!Console.KeyAvailable) return;
+        var key = Console.ReadKey();
+        Direction = key.Key switch
         {
-            keyAvailable = Console.KeyAvailable;
-        }
-        catch { }
-        if (keyAvailable)
-        {
-            var key = Console.ReadKey();
-            switch (key.Key)
-            {
-                case ConsoleKey.UpArrow:
-                    Direction = Direction.Up;
-                    break;
-                case ConsoleKey.DownArrow:
-                    Direction = Direction.Down;
-                    break;
-                case ConsoleKey.LeftArrow:
-                    Direction = Direction.Left;
-                    break;
-                case ConsoleKey.RightArrow:
-                    Direction = Direction.Right;
-                    break;
-
-            }
-        }
+            ConsoleKey.UpArrow => Direction.Up,
+            ConsoleKey.DownArrow => Direction.Down,
+            ConsoleKey.LeftArrow => Direction.Left,
+            ConsoleKey.RightArrow => Direction.Right,
+            _ => Direction
+        };
     }
 }

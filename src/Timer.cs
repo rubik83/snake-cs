@@ -18,9 +18,9 @@ namespace snake_cs
 
         public void Wait()
         {
-            double beginS = (double)(DateTime.Now - _begin).TotalSeconds;
-            double freq = Math.Max(beginS * _accel, _minFreq);
-            double periodMs = (1.0 / freq) * 1000.0;
+            var beginS = (DateTime.Now - _begin).TotalSeconds;
+            var freq = Math.Max(beginS * _accel, _minFreq);
+            var periodMs = (1.0 / freq) * 1000.0;
             Thread.Sleep((int)periodMs);
         }
     }

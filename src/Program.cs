@@ -2,11 +2,11 @@
 
 public class Program
 {
-    readonly Board _board;
-    Apple _apple;
-    readonly Snake _snake;
-    readonly Timer _timer;
-    readonly Keyboard _keyboard;
+    private readonly Board _board;
+    private Apple _apple;
+    private readonly Snake _snake;
+    private readonly Timer _timer;
+    private readonly Keyboard _keyboard;
 
     public Program()
     {
@@ -16,7 +16,7 @@ public class Program
         _timer = new Timer();
         _keyboard = new Keyboard();
 
-        Console.CancelKeyPress += (sender, args) => Exit("CTRL+C");
+        Console.CancelKeyPress += (_, _) => Exit("CTRL+C");
 
         _board.DrawBoard();
         _apple.Draw(_board);
