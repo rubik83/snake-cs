@@ -1,27 +1,27 @@
-namespace Snake
+namespace snake_cs
 {
     public class Timer
     {
         public bool Run;
-        private double Accel;
-        private double MinFreq;
-        private DateTime Begin;
+        private readonly double _accel;
+        private readonly double _minFreq;
+        private readonly DateTime _begin;
 
         public Timer()
         {
-            Accel = 0.2;
-            MinFreq = 1.0;
+            _accel = 0.2;
+            _minFreq = 1.0;
             Run = true;
-            Begin = DateTime.Now;
+            _begin = DateTime.Now;
 
         }
 
         public void Wait()
         {
-            double begin_s = (double)(DateTime.Now - Begin).TotalSeconds;
-            double freq = Math.Max(begin_s * Accel, MinFreq);
-            double period_ms = (1.0 / freq) * 1000.0;
-            Thread.Sleep((int)period_ms);
+            double beginS = (double)(DateTime.Now - _begin).TotalSeconds;
+            double freq = Math.Max(beginS * _accel, _minFreq);
+            double periodMs = (1.0 / freq) * 1000.0;
+            Thread.Sleep((int)periodMs);
         }
     }
 }

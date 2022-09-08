@@ -1,6 +1,6 @@
-namespace Snake;
-
 using System.Drawing;
+
+namespace snake_cs;
 
 /// <summary>
 ///  Cardinal directions
@@ -53,15 +53,15 @@ public static class PointExtentions
         point.Y = ScalarBounds(point.Y, max.Height);
     }
 
-    private static int ScalarBounds(int v, int max_v)
+    private static int ScalarBounds(int v, int maxV)
     {
         if (v < 0)
         {
-            return v + max_v;
+            return v + maxV;
         }
-        if (v >= max_v)
+        if (v >= maxV)
         {
-            return v - max_v;
+            return v - maxV;
         }
         return v;
     }

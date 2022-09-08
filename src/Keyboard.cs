@@ -1,4 +1,4 @@
-namespace Snake;
+namespace snake_cs;
 
 public class Keyboard
 {
@@ -11,13 +11,13 @@ public class Keyboard
 
     public void NextDirection()
     {
-        bool key_available = false;
+        bool keyAvailable = false;
         try
         {
-            key_available = Console.KeyAvailable;
+            keyAvailable = Console.KeyAvailable;
         }
         catch { }
-        if (key_available)
+        if (keyAvailable)
         {
             var key = Console.ReadKey();
             switch (key.Key)

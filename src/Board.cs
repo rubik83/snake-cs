@@ -1,11 +1,11 @@
-namespace Snake;
-
 using System.Drawing;
+
+namespace snake_cs;
 
 public class Board
 {
     public Size Size { get; private set; }
-    private ConsoleColor SavedBackgroundColor;
+    private readonly ConsoleColor _savedBackgroundColor;
 
     private static Size GetSizeFromConsole()
     {
@@ -15,7 +15,7 @@ public class Board
     public Board()
     {
         Size = GetSizeFromConsole();
-        SavedBackgroundColor = Console.BackgroundColor;
+        _savedBackgroundColor = Console.BackgroundColor;
     }
 
     public void DrawPoint(Point point, ConsoleColor color)
@@ -27,7 +27,7 @@ public class Board
 
     public void DrawExit(string reason, int score)
     {
-        Console.BackgroundColor = SavedBackgroundColor;
+        Console.BackgroundColor = _savedBackgroundColor;
         Console.SetCursorPosition(0, Size.Height + 4);
         Console.WriteLine($"\n End ({reason}). Score : {score}");
         Console.CursorVisible = true;
@@ -46,7 +46,7 @@ public class Board
     public void DrawBoard()
     {
         Console.SetCursorPosition(0, 0);
-        Console.BackgroundColor = SavedBackgroundColor;
+        Console.BackgroundColor = _savedBackgroundColor;
         Console.Clear();
         // write font advise
         Console.WriteLine("Use square font like \"Noto Color Emoji\"");

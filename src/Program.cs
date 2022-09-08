@@ -1,53 +1,53 @@
-﻿namespace Snake;
+﻿namespace snake_cs;
 
 public class Program
 {
-    Board Board;
-    Apple Apple;
-    Snake Snake;
-    Timer Timer;
-    Keyboard Keyboard;
+    readonly Board _board;
+    Apple _apple;
+    readonly Snake _snake;
+    readonly Timer _timer;
+    readonly Keyboard _keyboard;
 
     public Program()
     {
-        Board = new Board();
-        Apple = new Apple(Board, null);
-        Snake = new Snake(Board);
-        Timer = new Timer();
-        Keyboard = new Keyboard();
+        _board = new Board();
+        _apple = new Apple(_board, null);
+        _snake = new Snake(_board);
+        _timer = new Timer();
+        _keyboard = new Keyboard();
 
         Console.CancelKeyPress += (sender, args) => Exit("CTRL+C");
 
-        Board.DrawBoard();
-        Apple.Draw(Board);
-        Snake.Draw(Board);
+        _board.DrawBoard();
+        _apple.Draw(_board);
+        _snake.Draw(_board);
     }
 
     public void Run()
     {
-        while (Timer.Run)
+        while (_timer.Run)
         {
-            if (Board.WindowChanged())
+            if (_board.WindowChanged())
             {
-                Apple.Bounds(Board);
-                Board.DrawBoard();
-                Apple.Draw(Board);
-                Snake.Draw(Board);
+                _apple.Bounds(_board);
+                _board.DrawBoard();
+                _apple.Draw(_board);
+                _snake.Draw(_board);
             }
-            Keyboard.NextDirection();
-            if (!(Snake.Next(Board, ref Apple, Keyboard.Direction)))
+            _keyboard.NextDirection();
+            if (!(_snake.Next(_board, ref _apple, _keyboard.Direction)))
             {
-                Timer.Run = false;
+                _timer.Run = false;
                 Exit("GAME OVER");
                 return;
             }
-            Timer.Wait();
+            _timer.Wait();
         }
     }
 
     private void Exit(string reason)
     {
-        Timer.Run = false;
-        Board.DrawExit(reason, Snake.Size);
+        _timer.Run = false;
+        _board.DrawExit(reason, _snake.Size);
     }
 }

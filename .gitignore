@@ -4,3 +4,4 @@ output/
 temp/
 bin/
 .vscode/
+.idea/

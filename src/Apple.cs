@@ -1,7 +1,7 @@
-namespace Snake;
-
 using System.Drawing;
 using System.Security.Cryptography;
+
+namespace snake_cs;
 
 public struct Apple
 {
@@ -32,10 +32,10 @@ public struct Apple
         board.DrawPoint(Position, ConsoleColor.Red);
     }
 
-    public static void Change(ref Apple apple, in Board board, in LinkedList<Point> snake_coords)
+    public static void Change(ref Apple apple, in Board board, in LinkedList<Point> snakeCoords)
     {
         board.DrawPoint(apple.Position, ConsoleColor.Black);
-        apple = new Apple(board, snake_coords);
+        apple = new Apple(board, snakeCoords);
         apple.Draw(board);
     }
 }
