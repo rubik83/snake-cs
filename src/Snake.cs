@@ -33,7 +33,7 @@ public class Snake
 
         if (_coords.Last() == apple.Position)
         {
-            Size += 5;
+            Size += 3 * apple.Size;
             Apple.Change(ref apple, board, _coords);
         }
 

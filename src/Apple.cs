@@ -19,7 +19,7 @@ public struct Apple
             };
         }
         while (exclude is not null && exclude.Contains(Position));
-        Size = RandomNumberGenerator.GetInt32(1, 3);
+        Size = RandomNumberGenerator.GetInt32(1, 4);
     }
     public void Bounds(Board board)
     {
@@ -27,9 +27,20 @@ public struct Apple
         p.Bounds(board.Size);
         Position = p;
     }
+
+    private ConsoleColor Color()
+    {
+        return Size switch
+        {
+            1 => ConsoleColor.Green,
+            2 => ConsoleColor.Yellow,
+            3 => ConsoleColor.Red,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
     public void Draw(Board board)
     {
-        board.DrawPoint(Position, ConsoleColor.Red);
+        board.DrawPoint(Position, Color());
     }
 
     public static void Change(ref Apple apple, in Board board, in LinkedList<Point> snakeCoords)
