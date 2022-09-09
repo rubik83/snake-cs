@@ -1,42 +1,40 @@
-﻿namespace snake_cs;
+﻿using snake_cs.Hmi;
+
+namespace snake_cs;
 
 internal sealed class Program
 {
-    private readonly Board _board;
+    private readonly IHmi _hmi;
     private Apple _apple;
     private readonly Snake _snake;
     private readonly Timer _timer;
-    private readonly Keyboard _keyboard;
 
     public Program()
     {
-        _board = new ConsoleBoard();
-        _apple = new Apple(_board, null);
-        _snake = new Snake(_board);
+        _hmi = new ConsoleHmi(Exit);
+        _apple = new Apple(_hmi.Board, null);
+        _snake = new Snake(_hmi.Board);
         _timer = new Timer();
-        _keyboard = new Keyboard();
 
-        Console.CancelKeyPress += (_, _) => Exit("CTRL+C");
-
-        _board.DrawBoard();
-        _apple.Draw(_board);
-        _snake.Draw(_board);
+        _hmi.Board.DrawBoard();
+        _apple.Draw(_hmi.Board);
+        _snake.Draw(_hmi.Board);
     }
 
     public void Run()
     {
         while (_timer.Run)
         {
-            if (_board.WindowChanged())
+            if (_hmi.Board.WindowChanged())
             {
-                _apple.Bounds(_board);
-                _board.DrawBoard();
-                _apple.Draw(_board);
-                _snake.Draw(_board);
+                _apple.Bounds(_hmi.Board);
+                _hmi.Board.DrawBoard();
+                _apple.Draw(_hmi.Board);
+                _snake.Draw(_hmi.Board);
             }
 
-            _keyboard.NextDirection();
-            if (!(_snake.Next(_board, ref _apple, _keyboard.Direction)))
+            _hmi.NextDirection();
+            if (!(_snake.Next(_hmi.Board, ref _apple, _hmi.Direction)))
             {
                 _timer.Run = false;
                 Exit("GAME OVER");
@@ -50,6 +48,6 @@ internal sealed class Program
     private void Exit(string reason)
     {
         _timer.Run = false;
-        _board.DrawExit(reason, _snake.Size);
+        _hmi.Board.DrawExit(reason, _snake.Size);
     }
 }

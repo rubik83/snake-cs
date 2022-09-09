@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace snake_cs;
+namespace snake_cs.Hmi;
 
 internal abstract class Board
 {

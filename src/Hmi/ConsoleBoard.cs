@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace snake_cs;
+namespace snake_cs.Hmi;
 
 internal sealed class ConsoleBoard : Board
 {

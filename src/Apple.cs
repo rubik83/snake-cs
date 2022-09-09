@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Security.Cryptography;
+using snake_cs.Hmi;
 
 namespace snake_cs;
 
