@@ -29,26 +29,26 @@ internal struct Apple
         Position = p;
     }
 
-    private ConsoleColor Color()
+    private Color GetColor()
     {
         return Size switch
         {
-            1 => ConsoleColor.Green,
-            2 => ConsoleColor.Yellow,
-            3 => ConsoleColor.Red,
+            1 => Color.Green,
+            2 => Color.Yellow,
+            3 => Color.Red,
             _ => throw new ArgumentOutOfRangeException()
         };
     }
 
-    internal void Draw()
+    internal void Draw(in Board board)
     {
-        Board.DrawPoint(Position, Color());
+        board.DrawPoint(Position, GetColor());
     }
 
     internal static void Change(ref Apple apple, in Board board, in LinkedList<Point> snakeCoords)
     {
-        Board.DrawPoint(apple.Position, ConsoleColor.Black);
+        board.WipePoint(apple.Position);
         apple = new Apple(board, snakeCoords);
-        apple.Draw();
+        apple.Draw(board);
     }
 }

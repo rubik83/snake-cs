@@ -10,7 +10,7 @@ internal sealed class Program
 
     public Program()
     {
-        _board = new Board();
+        _board = new ConsoleBoard();
         _apple = new Apple(_board, null);
         _snake = new Snake(_board);
         _timer = new Timer();
@@ -19,7 +19,7 @@ internal sealed class Program
         Console.CancelKeyPress += (_, _) => Exit("CTRL+C");
 
         _board.DrawBoard();
-        _apple.Draw();
+        _apple.Draw(_board);
         _snake.Draw(_board);
     }
 
@@ -31,7 +31,7 @@ internal sealed class Program
             {
                 _apple.Bounds(_board);
                 _board.DrawBoard();
-                _apple.Draw();
+                _apple.Draw(_board);
                 _snake.Draw(_board);
             }
 

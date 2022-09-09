@@ -16,7 +16,7 @@ internal sealed class Snake
 
     public void Draw(in Board board)
     {
-        foreach (var p in _coords) Board.DrawPoint(p, ConsoleColor.Blue);
+        foreach (var p in _coords) board.DrawPoint(p, Color.Blue);
     }
 
     public bool Next(in Board board, ref Apple apple, Direction direction)
@@ -34,11 +34,11 @@ internal sealed class Snake
             Apple.Change(ref apple, board, _coords);
         }
 
-        Board.DrawPoint(_coords.Last(), ConsoleColor.Blue);
+        board.DrawPoint(_coords.Last(), Color.Blue);
 
         if (_coords.Count <= Size) return true;
 
-        Board.DrawPoint(_coords.First(), ConsoleColor.Black);
+        board.WipePoint(_coords.First());
         _coords.RemoveFirst();
 
         return true;
