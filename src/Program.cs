@@ -34,7 +34,7 @@ internal sealed class Program
             }
 
             _hmi.NextDirection();
-            if (!(_snake.Next(_hmi.Board, ref _apple, _hmi.Direction)))
+            if (!_snake.Next(_hmi.Board, ref _apple, _hmi.Direction))
             {
                 _timer.Run = false;
                 Exit("GAME OVER");

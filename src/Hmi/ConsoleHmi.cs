@@ -13,9 +13,9 @@ internal sealed class ConsoleHmi : IHmi
 
     public void NextDirection()
     {
-        if (!System.Console.KeyAvailable) return;
+        if (!Console.KeyAvailable) return;
 
-        var key = System.Console.ReadKey();
+        var key = Console.ReadKey();
         Direction = key.Key switch
         {
             ConsoleKey.UpArrow => Direction.Up,
