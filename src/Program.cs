@@ -21,9 +21,9 @@ internal sealed class Program
         _snake.Draw(_hmi.Board);
     }
 
-    public void Run()
+    public async Task Run()
     {
-        while (_timer.Run)
+        while (_timer.IsRunning)
         {
             if (_hmi.Board.WindowChanged())
             {
@@ -36,18 +36,18 @@ internal sealed class Program
             _hmi.NextDirection();
             if (!_snake.Next(_hmi.Board, ref _apple, _hmi.Direction))
             {
-                _timer.Run = false;
+                _timer.Cancel();
                 Exit("GAME OVER");
                 return;
             }
 
-            _timer.Wait();
+            await _timer.Wait();
         }
     }
 
     private void Exit(string reason)
     {
-        _timer.Run = false;
+        _timer.Cancel();
         _hmi.Board.DrawExit(reason, _snake.Size);
     }
 }
